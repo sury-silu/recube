@@ -74,6 +74,7 @@ if ( $user_agent_id!=0 && get_post_status($user_agent_id)=='disabled' ){
             <a href="<?php print esc_url($dash_profile);?>"  class="<?php print $activeprofile; ?>"><i class="fa fa-cog"></i> <?php _e('My Profile','wpestate');?></a>
         <?php }
 		
+		// Menu only for developers/sellers
 		if( $user_role==4 ){
 			
 			if( $dash_link!=$home_url ){
@@ -88,9 +89,13 @@ if ( $user_agent_id!=0 && get_post_status($user_agent_id)=='disabled' ){
 			} 
 		}
 		
-        if( $dash_favorite!=$home_url ){ ?>
-            <a href="<?php print esc_url($dash_favorite);?>" class="<?php print $activefav; ?>"><i class="fa fa-heart"></i> <?php _e('Favorites','wpestate');?></a>
-        <?php } ?>
+		// Menu only for agent
+		if( $user_role==2 ){
+			if( $dash_favorite!=$home_url ){ ?>
+				<a href="<?php print esc_url($dash_favorite);?>" class="<?php print $activefav; ?>"><i class="fa fa-heart"></i> <?php _e('Favorites','wpestate');?></a>
+			<?php
+			}
+		}?>
        
         
         <a href="<?php echo wp_logout_url( home_url() );?>" title="Logout"><i class="fa fa-power-off"></i> <?php _e('Log Out','wpestate');?></a>
