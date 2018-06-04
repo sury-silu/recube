@@ -1,0 +1,113 @@
+/*
+Theme Name: wpresidence
+Template: wpresidence
+Author: WP Estate
+Version: 1.0
+Updated: 2015-01-25 18:19:31
+*/
+
+/* =============== default custom css ======================= */
+#wpestate_wrapper_admin_menu select {
+    height: 40px;
+}
+
+.ribbon-wrapper-hot-offer{
+    background: #FB6A5C;
+}
+.mobile-logo img{
+margin-top:9px;
+}
+
+ .hot-offer{
+    color: #fff;
+}
+
+.ribbon-wrapper-new-offer{
+    background: #FF9800;
+    padding: 0px 4px;
+}
+
+ .new-offer{
+    color: #fff;
+}
+
+.ribbon-wrapper-open-house{
+    background: #FF9800;
+}
+
+ .open-house{
+    color: #fff;
+}
+
+.ribbon-wrapper-sold{
+    background: #282D33;
+}
+
+ .sold{
+    color: #fff;
+}
+
+.filter_menu li:hover {
+color: #ffffff!important;
+}
+
+.login_form label {
+margin-bottom: 11px;
+}
+
+#collapseThree fa fa-times {
+color: #F57C00;
+}
+
+.listing_detail col-md-4 .fa fa-times,
+.featured_prop_price .price_label {
+color: #FF9800;
+}
+
+@media only screen and (max-width: 1150px){
+#access a {
+font-size: 14px;
+padding-left: 12px;
+padding-right: 12px;
+}
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 992px){
+#access {
+  max-width: 629px;
+}
+}
+
+.listing_details {
+    margin: 5px 0px 0px 0px;
+}
+
+#access .menu li:hover>a:focus {
+    color: #ffffff!important;
+}
+
+.search_wr_2.with_search_on_start.without_search_form_float #results {
+    left: 0px;
+    bottom: 0px;
+}
+
+#directory_load_more {
+    color: white;
+}
+
+/* =============== default custom css ENDS ======================= */
+
+
+/* =============== RECUBE Custom CSS Starts ======================= */
+.flip-box-wrap .flip-box-icon {
+	    margin-bottom: 20px;
+}
+
+.logo img {
+        max-height: 60px;
+}
+
+.mobile-logo img {
+    margin-top: 0px;
+    max-height: 50px;
+}
