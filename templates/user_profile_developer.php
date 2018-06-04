@@ -93,7 +93,7 @@ if($user_custom_picture==''){
           
     <div class="col-md-4">
         <p>
-            <label for="developer_title"><?php _e('Developer Name','wpestate');?></label>
+            <label for="developer_title"><?php _e('Name','wpestate');?></label>
             <input type="text" id="developer_title" class="form-control" value="<?php echo esc_html(stripslashes($developer_title));?>"  name="developer_title">
         </p>
 
@@ -102,15 +102,9 @@ if($user_custom_picture==''){
             <input type="text" id="useremail"  class="form-control" value="<?php echo esc_html($developer_email);?>"  name="useremail">
         </p>
         
-        <p>
-            <label for="userskype"><?php _e('Skype', 'wpestate'); ?></label>
-            <input type="text" id="userskype" class="form-control" value="<?php echo esc_html($developer_skype); ?>"  name="userskype">
-        </p>
+       
         
-        <p>
-            <label for="website"><?php _e('Taxes','wpestate');?></label>
-            <input type="text" id="developer_taxes" name="developer_taxes" class="form-control" value="<?php echo esc_html($developer_taxes);?>">
-        </p>
+       
              
     </div>  
 
@@ -119,136 +113,15 @@ if($user_custom_picture==''){
             <label for="userphone"><?php _e('Phone', 'wpestate'); ?></label>
             <input type="text" id="userphone" class="form-control" value="<?php echo esc_html($developer_phone); ?>"  name="userphone">
         </p>
-        <p>
-            <label for="usermobile"><?php _e('Mobile', 'wpestate'); ?></label>
-            <input type="text" id="usermobile" class="form-control" value="<?php echo esc_html($developer_mobile); ?>"  name="usermobile">
-        </p>
-        
-        <p>
-            <label for="website"><?php _e('Languages','wpestate');?></label>
-            <input type="text" id="developer_languages" name="developer_languages" class="form-control" value="<?php echo esc_html($developer_languages);?>"  name="website">
-        </p>
-        
-        <p>
-            <label for="website"><?php _e('License ','wpestate');?></label>
-            <input type="text" id="developer_license" name="developer_license" class="form-control" value="<?php echo esc_html($developer_license);?>"  name="website">
-        </p>
-
+   
         <?php   wp_nonce_field( 'profile_ajax_nonce', 'security-profile' );   ?>
        
     </div>
-</div>
-                             
-<div class="add-estate profile-page profile-onprofile row">       
-    <div class="col-md-4 profile_label">
-        <div class="user_details_row"><?php _e('Developer Details','wpestate');?></div> 
-        <div class="user_profile_explain"><?php _e('Add your social media information.','wpestate')?></div>
-
-    </div>
-    <div class="col-md-4">
-        <p>
-            <label for="userfacebook"><?php _e('Facebook Url', 'wpestate'); ?></label>
-            <input type="text" id="userfacebook" class="form-control" value="<?php echo esc_html($developer_facebook); ?>"  name="userfacebook">
-        </p>
-
-        <p>
-            <label for="usertwitter"><?php _e('Twitter Url', 'wpestate'); ?></label>
-            <input type="text" id="usertwitter" class="form-control" value="<?php echo esc_html($developer_twitter); ?>"  name="usertwitter">
-        </p>
-
-        <p>
-            <label for="userlinkedin"><?php _e('Linkedin Url', 'wpestate'); ?></label>
-            <input type="text" id="userlinkedin" class="form-control"  value="<?php echo esc_html($developer_linkedin); ?>"  name="userlinkedin">
-        </p>
-    </div>
-    <div class="col-md-4">
-        <p>
-            <label for="userinstagram"><?php _e('Instagram Url','wpestate');?></label>
-            <input type="text" id="userinstagram" class="form-control" value="<?php echo esc_html($developer_instagram);?>"  name="userinstagram">
-        </p> 
-
-        <p>
-            <label for="userpinterest"><?php _e('Pinterest Url','wpestate');?></label>
-            <input type="text" id="userpinterest" class="form-control" value="<?php echo esc_html($developer_pinterest);?>"  name="userpinterest">
-        </p> 
-
-        <p>
-            <label for="website"><?php _e('Website Url (without http)','wpestate');?></label>
-            <input type="text" id="developer_website" class="form-control" value="<?php echo esc_html($developer_website);?>"  name="website">
-        </p>
-    </div> 
-</div>
-    
+</div> 
     
 <div class="add-estate profile-page profile-onprofile row">
     <div class="col-md-4 profile_label">
-        <div class="user_details_row"><?php _e('Developer Area/Categories','wpestate');?></div> 
-        <div class="user_profile_explain"><?php _e('What kind of listings do you handle?','wpestate')?></div>
-    </div>
-    
-    <div class="col-md-4">
-        <p>
-            <label for="developer_category"><?php _e('Category','wpestate');?></label>
-       
-        
-        <?php 
-            $developer_category_selected='';
-            $developer_category_array            =   get_the_terms($developer_id, 'property_category_developer');
-            if(isset($developer_category_array[0])){
-                $developer_category_selected   =   $developer_category_array[0]->term_id;
-            }
-            $args=array(
-                'class'       => 'select-submit2',
-                'hide_empty'  => false,
-                'selected'    => $developer_category_selected,
-                'name'        => 'developer_category',
-                'id'          => 'developer_category_submit',
-                'orderby'     => 'NAME',
-                'order'       => 'ASC',
-                'show_option_none'   => __('None','wpestate'),
-                'taxonomy'    => 'property_category_developer',
-                'hierarchical'=> true
-            );
-            wp_dropdown_categories( $args ); ?>
-            
-        </p>
-    </div>
-    
-    <div class="col-md-4">
-          <p>
-            <label for="developer_action"><?php _e('Action Category','wpestate');?></label>
-            <?php
-            $developer_action_selected='';
-            $developer_action_array            =   get_the_terms($developer_id, 'property_action_developer');
-            if(isset($developer_action_array[0])){
-                $developer_action_selected   =   $developer_action_array[0]->term_id;
-            }
-            
-            $args=array(
-                'class'       => 'select-submit2',
-                'hide_empty'  => false,
-                'selected'    => $developer_action_selected,
-                'name'        => 'developer_action',
-                'id'          => 'developer_action_submit',
-                'orderby'     => 'NAME',
-                'order'       => 'ASC',
-                'show_option_none'   => __('None','wpestate'),
-                'taxonomy'    => 'property_action_developer',
-                'hierarchical'=> true
-            );
-            wp_dropdown_categories( $args ); ?>
-           
-        </p>
-    </div>
-    
-</div>
-
-    
-    
-    
-<div class="add-estate profile-page profile-onprofile row">
-    <div class="col-md-4 profile_label">
-        <div class="user_details_row"><?php _e('Developer Location','wpestate');?></div> 
+        <div class="user_details_row"><?php _e('Location','wpestate');?></div> 
         <div class="user_profile_explain"><?php _e('Add some information about you.','wpestate')?></div>
     </div>
     
@@ -265,7 +138,7 @@ if($user_custom_picture==''){
     
     <div class="col-md-4">
         <p>
-            <label for="developer_county"><?php _e('State/County','wpestate');?></label>
+            <label for="developer_county"><?php _e('State','wpestate');?></label>
             <input type="text" id="developer_county" class="form-control" value="<?php echo esc_html($developer_county);?>"  name="developer_county">
         </p>  
     </div>
@@ -280,21 +153,6 @@ if($user_custom_picture==''){
             <input type="text" id="developer_address" class="form-control" value="<?php echo $developer_address;?>"  name="website">
         </p>
         
-        <p>
-            <label for="usertitle"><?php _e('Location','wpestate');?></label>
-            <div id="googleMapsubmit" ></div>   
-            <input type="hidden" name="developer_lat" id="developer_lat"      value="<?php echo $developer_lat;?>">
-            <input type="hidden" name="developer_long" id="developer_long"    value="<?php echo $developer_long;?>">
-        </p>  
-        
-          <p class="fullp-button">
-            <button id="google_developer_location"  class="wpresidence_button wpresidence_success"><?php _e('Place Pin with Developer Address','wpestate');?></button>
-        </p>
-        
-        <p>
-            <label for="about_me"><?php _e('About Us','wpestate');?></label>
-            <textarea id="about_me" class="form-control" name="about_me"><?php echo ($developer_description);?></textarea>
-        </p>
         <p class="fullp-button">
             <button class="wpresidence_button" id="update_profile_developer"><?php _e('Update profile', 'wpestate'); ?></button>
         
