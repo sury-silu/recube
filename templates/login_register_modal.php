@@ -75,8 +75,8 @@ $security_nonce=wp_nonce_field( 'forgot_ajax_nonce-topbar', 'security-forgot-top
                         __('Select User Type','wpestate'),
                         __('User','wpestate'),
                         __('Single Agent','wpestate'),
-                       // __('Agency','wpestate'),
-                        //__('Developer','wpestate'),
+                        __('Agency','wpestate'),
+                        __('Developer','wpestate'),
                     );
                     
                     $permited_roles             = get_option('wp_estate_visible_user_role',true);
