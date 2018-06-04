@@ -121,11 +121,6 @@ padding-right: 12px;
 	display: none;
 }
 
-/* Dashboard menu links */
-#user_menu_open li:nth-child(5), #user_menu_open li:nth-child(6), .user_dashboard_links a:nth-child(5), .user_dashboard_links a:nth-child(6){
-    display: none;
-}
-
 
 /* My Properties*/
 .row_user_dashboard #search_dashboard_auto, .row_user_dashboard .dasboard-prop-listing .info-container{

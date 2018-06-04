@@ -72,53 +72,27 @@ if ( $user_agent_id!=0 && get_post_status($user_agent_id)=='disabled' ){
     <div class="user_dashboard_links">
         <?php if( $dash_profile!=$home_url ){ ?>
             <a href="<?php print esc_url($dash_profile);?>"  class="<?php print $activeprofile; ?>"><i class="fa fa-cog"></i> <?php _e('My Profile','wpestate');?></a>
-        <?php } ?>
-        <?php 
-        if( $dash_link!=$home_url ){
-            if($user_agent_id==0 || ( $user_agent_id!=0 && get_post_status($user_agent_id)!='pending' && get_post_status($user_agent_id)!='disabled') ){?>
-            <a href="<?php print esc_url($dash_link);?>"     class="<?php print $activedash; ?>"> <i class="fa fa-map-marker"></i> <?php _e('My Properties List','wpestate');?></a>
-        <?php } 
-        }?>
-        <?php if( $add_link!=$home_url ){
-            if($user_agent_id==0 || ( $user_agent_id!=0 && get_post_status($user_agent_id)!='pending' && get_post_status($user_agent_id)!='disabled') ){?>
-            <a href="<?php print esc_url ($add_link);?>"      class="<?php print $activeadd; ?>"> <i class="fa fa-plus"></i><?php _e('Add New Property','wpestate');?></a>  
         <?php }
-            } 
-      
-        if($user_role==3 || $user_role ==4){
-            if( $user_agent_id!=0 && get_post_status($user_agent_id)!='pending'){
-            ?>
-            <a href="<?php print esc_url ($add_agent);?>"            class="<?php print $activeaddagent; ?>"> <i class="fa fa-user-plus"></i><?php _e('Add New Agent','wpestate');?></a>  
-            <a href="<?php print esc_url ($agent_list_link);?>"      class="<?php print $activeagentlist; ?>"> <i class="fa fa-user"></i><?php _e('Agent list','wpestate');?></a>  
-            
-        <?php
-            }
-        }
-        ?>
-        <?php if( $dash_favorite!=$home_url ){ ?>
+		
+		if( $user_role==4 ){
+			
+			if( $dash_link!=$home_url ){
+				if($user_agent_id==0 || ( $user_agent_id!=0 && get_post_status($user_agent_id)!='pending' && get_post_status($user_agent_id)!='disabled') ){?>
+				<a href="<?php print esc_url($dash_link);?>"     class="<?php print $activedash; ?>"> <i class="fa fa-map-marker"></i> <?php _e('My Properties List','wpestate');?></a>
+			<?php } 
+			}?>
+			<?php if( $add_link!=$home_url ){
+				if($user_agent_id==0 || ( $user_agent_id!=0 && get_post_status($user_agent_id)!='pending' && get_post_status($user_agent_id)!='disabled') ){?>
+				<a href="<?php print esc_url ($add_link);?>"      class="<?php print $activeadd; ?>"> <i class="fa fa-plus"></i><?php _e('Add New Property','wpestate');?></a>  
+			<?php }
+			} 
+		}
+		
+        if( $dash_favorite!=$home_url ){ ?>
             <a href="<?php print esc_url($dash_favorite);?>" class="<?php print $activefav; ?>"><i class="fa fa-heart"></i> <?php _e('Favorites','wpestate');?></a>
         <?php } ?>
-        <?php if( $dash_searches!=$home_url ){ ?>
-            <a href="<?php print esc_url($dash_searches);?>" class="<?php print $activesearch; ?>"><i class="fa fa-search"></i> <?php _e('Saved Searches','wpestate');?></a>
-        <?php } 
-        if( $dash_invoices!=$home_url ){ ?>
-            <a href="<?php print esc_url($dash_invoices);?>" class="<?php print $activeinvoices; ?>"><i class="fa fa-file-text-o"></i> <?php _e('My Invoices','wpestate');?></a>
-        <?php } 
-        if($dash_inbox!=$home_url){ ?>
-            <a href="<?php print esc_url($dash_inbox);?>" class="<?php print $activeinbox; ?>"><i class="fa fa-envelope-o"></i> 
-                <?php _e('Inbox','wpestate'); 
-                    if  ($no_unread>0){
-                        echo '<div class="unread_mess">'.$no_unread.'</div>';
-                    }
-                ?>
-            </a>
-        <?php }
-        if( $dash_showing!=$home_url ){ ?>
-            <a href="<?php print esc_url($dash_showing);?>" class="<?php print $activeshowing; ?>"><i class="fa fa-file-text-o"></i> <?php _e('Calendar','wpestate');?></a>
-        <?php } ?>
-            
-            
-            
+       
+        
         <a href="<?php echo wp_logout_url( home_url() );?>" title="Logout"><i class="fa fa-power-off"></i> <?php _e('Log Out','wpestate');?></a>
     </div>
     
