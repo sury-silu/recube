@@ -121,7 +121,6 @@ padding-right: 12px;
 	display: none;
 }
 
-
 /* My Properties*/
 .row_user_dashboard #search_dashboard_auto, .row_user_dashboard .dasboard-prop-listing .info-container{
 	display: none;
@@ -142,4 +141,12 @@ padding-right: 12px;
 /* Single agent page */
 .single-estate_agent .agent_contanct_form {
 	display:none;
+}
+
+
+
+/* Single property page */
+
+input#property_id {	
+	display: none;
 }
