@@ -297,6 +297,14 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
         endwhile; // end of the loop
         $show_compare=1;
         
+					
+		/******************** Bidding ******************************/
+
+		echo '<input id="property_id" type="text" value="' . $post->ID .'">';
+		echo do_shortcode( '[cred_form form="form-for-bids"]' );		
+
+
+
         $sidebar_agent_option_value=    get_post_meta($post->ID, 'sidebar_agent_option', true);
         $enable_global_property_page_agent_sidebar= esc_html ( get_option('wp_estate_global_property_page_agent_sidebar','') );
         if ( $sidebar_agent_option_value=='global' ){
@@ -340,11 +348,6 @@ $selected_pins  =   wpestate_listing_pins($mapargs,1);
 wp_localize_script('googlecode_property', 'googlecode_property_vars2', 
             array('markers2'          =>  $selected_pins));
 
-			
-/******************** Bidding ******************************/
-
-echo '<input id="property_id" type="text" value="' . $post->ID .'">';
-echo do_shortcode( '[cred_form form="form-for-bids"]' );		
 			
 			
 
