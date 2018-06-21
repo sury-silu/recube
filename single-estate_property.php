@@ -300,9 +300,71 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 					
 		/******************** Bidding ******************************/
 
-		echo '<input id="property_id" type="text" value="' . $post->ID .'">';
-		echo do_shortcode( '[cred_form form="form-for-bids"]' );		
-
+		if( $current_user->ID ) {
+			
+			$user_estate_role = get_user_meta( $current_user->ID, 'user_estate_role', true);
+			
+			// Show bidding form only to agents.
+			if( $user_estate_role == "2" ) {
+				echo '<input id="property_id" type="text" value="' . $post->ID .'">';
+				echo do_shortcode( '[cred_form form="form-for-bids"]' );
+			}
+			// Show all bids received only to sellers/developer.
+			else if( $user_estate_role == "4" ) {
+				
+				$bids = get_posts( array(
+						'post_type'		=> 'bid',
+						'meta_key'		=> 'wpcf-prop-id',
+						'meta_value'	=> $post->ID
+				));
+				?>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Current Agent Bids</h2>
+						<div class="col-md-3">
+							Agent Name
+						</div>
+						<div class="col-md-3">
+							Listing Agent's Commission
+						</div>
+						<div class="col-md-3">
+							Buyer's Agent's Commission
+						</div>
+						<div class="col-md-3">
+							If agent also represent buyer
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+				
+					<?php
+					foreach( $bids as $bid ){
+						$agent = get_user_by( 'id', $bid->post_author );
+					?>
+						<div class="col-md-3">
+							<?php echo $agent->first_name . ' ' . $agent->last_name; ?>
+						</div>
+						
+						<div class="col-md-3">
+							<?php echo get_post_meta( $bid->ID, 'wpcf-sell-com', true ); ?>
+						</div>
+						
+						<div class="col-md-3">
+							<?php echo get_post_meta( $bid->ID, 'wpcf-buy-com', true ); ?>
+						</div>
+						
+						<div class="col-md-3">
+							<?php echo get_post_meta( $bid->ID, 'wpcf-both-com', true ); ?>
+						</div>
+					<?php
+					}?>
+				
+				</div>
+			<?php
+			}
+		}
 
 
         $sidebar_agent_option_value=    get_post_meta($post->ID, 'sidebar_agent_option', true);
