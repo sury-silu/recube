@@ -138,15 +138,62 @@ padding-right: 12px;
 	display:none;
 }
 
+input#property_id {	
+	display: none;
+}
+
+#bid_wrapper {
+    margin-bottom: 30px;
+}
+
+#bid_wrapper .row {
+    margin: 0px;
+}
+
+#bid_header {
+    background-color: #FF9800;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 0px;
+    margin: 0px;
+    text-align: center;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.bid-row {
+    border-left: 1px solid #dde4e9;
+    margin: 0px;
+    border-right: 1px solid #dde4e9;
+    border-bottom: 1px solid #dde4e9;
+    text-align: center;
+    padding: 10px 0px;
+}
+	
+.col-md-3.bid-header-phone {
+    padding: 5px 0px;
+	display : none;
+}	
+
+.col-md-3.bid-header-phone span{
+	background-color: #FF9800;
+    color: #fff;
+	padding: 5px 10px;
+	border-radius: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+	.col-md-3.bid-header-phone {
+		display: block;
+	}
+	#bid_header {
+		display: none;
+	}
+	#bid_wrapper {
+		border-top: 1px solid #dde4e9;
+	}
+}
+	
 /* Single agent page */
 .single-estate_agent .agent_contanct_form {
 	display:none;
-}
-
-
-
-/* Single property page */
-
-input#property_id {	
-	display: none;
 }

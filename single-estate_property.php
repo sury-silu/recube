@@ -319,48 +319,60 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 				));
 				?>
 				
-				<div class="row">
-					<div class="col-md-12">
-						<h2>Current Agent Bids</h2>
-						<div class="col-md-3">
-							Agent Name
-						</div>
-						<div class="col-md-3">
-							Listing Agent's Commission
-						</div>
-						<div class="col-md-3">
-							Buyer's Agent's Commission
-						</div>
-						<div class="col-md-3">
-							If agent also represent buyer
+				<h2 style="font-weight: lighter;">Current Agent Bids</h2>
+				<div id="bid_wrapper">
+					<div class="row" id="bid_header">
+						<div class="col-md-12">
+							<div class="col-md-3">
+								Agent's Name
+							</div>
+							<div class="col-md-3">
+								Listing Agent's Commission
+							</div>
+							<div class="col-md-3">
+								Buyer's Agent's Commission
+							</div>
+							<div class="col-md-3">
+								If agent also represent buyer
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="row">
 				
 					<?php
 					foreach( $bids as $bid ){
 						$agent = get_user_by( 'id', $bid->post_author );
 					?>
-						<div class="col-md-3">
-							<?php echo $agent->first_name . ' ' . $agent->last_name; ?>
-						</div>
-						
-						<div class="col-md-3">
-							<?php echo get_post_meta( $bid->ID, 'wpcf-sell-com', true ); ?>
-						</div>
-						
-						<div class="col-md-3">
-							<?php echo get_post_meta( $bid->ID, 'wpcf-buy-com', true ); ?>
-						</div>
-						
-						<div class="col-md-3">
-							<?php echo get_post_meta( $bid->ID, 'wpcf-both-com', true ); ?>
+						<div class="row bid-row">
+							<div class="col-md-3 bid-header-phone">
+								<span>Agent's Name</span>
+							</div>
+							<div class="col-md-3">
+								<?php echo $agent->first_name . ' ' . $agent->last_name; ?>
+							</div>
+							
+							<div class="col-md-3 bid-header-phone">
+								<span>Listing Agent's Commission</span>
+							</div>
+							<div class="col-md-3">
+								<?php echo get_post_meta( $bid->ID, 'wpcf-sell-com', true ); ?>%
+							</div>
+							
+							<div class="col-md-3 bid-header-phone">
+								<span>Buyer's Agent's Commission</span>
+							</div>
+							<div class="col-md-3">
+								<?php echo get_post_meta( $bid->ID, 'wpcf-buy-com', true ); ?>%
+							</div>
+							
+							<div class="col-md-3 bid-header-phone">
+								<span>If agent also represents buyer</span>
+							</div>
+							<div class="col-md-3">
+								<?php echo get_post_meta( $bid->ID, 'wpcf-both-com', true ); ?>%
+							</div>
 						</div>
 					<?php
 					}?>
-				
 				</div>
 			<?php
 			}
