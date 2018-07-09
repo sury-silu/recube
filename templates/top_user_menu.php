@@ -78,7 +78,11 @@ if ( 0 != $current_user->ID  && is_user_logged_in() ) {
 			if($home_url!=$dash_favorite){?>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href="<?php print esc_url($dash_favorite);?>" class="active_fav"><i class="fa fa-heart"></i><?php _e('Favorites','wpestate');?></a></li>
 			<?php   
-			}
+			}?>
+			
+			<li role="presentation"><a href="<?php echo site_url() . '/my-bids'; ?>" class="<?php print $activemybids; ?>">
+			<i class="fa fa-gavel"></i>My Bids</a><li>
+		<?php
 		}?>
    
        

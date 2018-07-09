@@ -50,7 +50,9 @@ if ( basename( get_page_template() ) == 'user_dashboard.php' ){
     $activeinbox =   'user_tab_active';
 }else if( basename( get_page_template() ) == 'user_dashboard_showing.php' ){
     $activeshowing =   'user_tab_active';
-} 
+}else if( basename( get_page_template() ) == 'user_dashboard_my_bids.php' ){
+    $activemybids =   'user_tab_active';
+}
 $no_unread=  intval(get_user_meta($userID,'unread_mess',true));
     
 $user_role = get_user_meta( $current_user->ID, 'user_estate_role', true) ;
@@ -94,7 +96,12 @@ if ( $user_agent_id!=0 && get_post_status($user_agent_id)=='disabled' ){
 			if( $dash_favorite!=$home_url ){ ?>
 				<a href="<?php print esc_url($dash_favorite);?>" class="<?php print $activefav; ?>"><i class="fa fa-heart"></i> <?php _e('Favorites','wpestate');?></a>
 			<?php
-			}
+			}?>
+			
+			<a href="<?php echo site_url() . '/my-bids'; ?>" class="<?php print $activemybids; ?>">
+			<i class="fa fa-gavel"></i>My Bids</a>
+			
+		<?php
 		}?>
        
         
