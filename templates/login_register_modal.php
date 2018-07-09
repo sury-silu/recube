@@ -87,6 +87,9 @@ $security_nonce=wp_nonce_field( 'forgot_ajax_nonce-topbar', 'security-forgot-top
                         print '<option value="0">'.__('Select User Type','wpestate').'</option>';
                         foreach($user_types as $key=>$name){
                             if(in_array($name, $permited_roles)){
+								
+								if( $name == 'Developer' )
+									$name = 'Seller';
                                 print '<option value="'.$key.'">'.$name.'</option>';
                             }
                         }
