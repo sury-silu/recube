@@ -197,3 +197,32 @@ input#property_id {
 .single-estate_agent .agent_contanct_form {
 	display:none;
 }
+
+/* My Bids */
+.page-template-user_dashboard_my_bids .content_wrapper {
+    width: 100%;
+    padding: 0px;
+}
+
+.page-template-user_dashboard_my_bids #colophon {
+    display: none;
+}
+
+.page-template-user_dashboard_my_bids .has_header_type1 .dashboard-margin {
+	top: 0px !important;
+}
+
+.bid-head {
+    color: #FF9800;
+    font-size: 15px;
+	margin-bottom: 10px;
+}
+
+.bid-attr {
+    margin-bottom: 20px;
+	text-align: center;
+}
+
+.bid-list .col-md-1 {
+    padding-right: 0px;
+}
