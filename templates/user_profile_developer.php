@@ -125,37 +125,35 @@ if($user_custom_picture==''){
         <div class="user_profile_explain"><?php _e('Add some information about you.','wpestate')?></div>
     </div>
     
-    <div class="col-md-4">
-        <p>
-            <label for="developer_city"><?php _e('City','wpestate');?></label>
-            <input type="text" id="developer_city" class="form-control" value="<?php echo esc_html($developer_city);?>"  name="developer_city">
-        </p>
-        <p>
-            <label for="developer_area"><?php _e('Area','wpestate');?></label>
-            <input type="text" id="developer_area" class="form-control" value="<?php echo esc_html($developer_area);?>"  name="developer_area">
-        </p>
-    </div>
-    
-    <div class="col-md-4">
-        <p>
-            <label for="developer_county"><?php _e('State','wpestate');?></label>
-            <input type="text" id="developer_county" class="form-control" value="<?php echo esc_html($developer_county);?>"  name="developer_county">
-        </p>  
-    </div>
-    
-    
- 
-
+    <div class="col-md-8">
+		<div class="col-md-12">
+			<p>
+				<label for="adress"><?php _e('Address','wpestate');?></label>
+				<input type="text" id="developer_address" class="form-control" value="<?php echo $developer_address;?>"  name="website">
+			</p>
+		</div>
+		
+		<div class="col-md-6">
+			<p>
+				<label for="developer_city"><?php _e('City','wpestate');?></label>
+				<input type="text" id="developer_city" class="form-control" value="<?php echo esc_html($developer_city);?>"  name="developer_city">
+			</p>
+		</div>
+		
+		<div class="col-md-6">
+			<p>
+				<label for="developer_county"><?php _e('State','wpestate');?></label>
+				<input type="text" id="developer_county" class="form-control" value="<?php echo esc_html($developer_county);?>"  name="developer_county">
+			</p>  
+		</div>
+	
+	</div>
+	
     <div class="col-md-8 col-md-push-4">
-        
-        <p>
-            <label for="adress"><?php _e('Address','wpestate');?></label>
-            <input type="text" id="developer_address" class="form-control" value="<?php echo $developer_address;?>"  name="website">
-        </p>
         
         <p class="fullp-button">
             <button class="wpresidence_button" id="update_profile_developer"><?php _e('Update profile', 'wpestate'); ?></button>
-        
+			<p>Your address, phone number and email address will not be seen or shared with anyone, including agents. If an agent has a question for you before bidding, they will only be able to email you through our system and your email address is kept anonymous.</p>
        
         <?php
         $user_agent_id          =   intval( get_user_meta($userID,'user_agent_id',true));
