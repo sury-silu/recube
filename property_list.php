@@ -1,7 +1,18 @@
 <?php
 // Template Name: Properties list
 // Wp Estate Pack 
+
+
+// Show property list to only agents.
+$current_user               =   wp_get_current_user();
+$user_role = get_user_meta( $current_user->ID, 'user_estate_role', true) ;
+if( $user_role !=2 ){
+	echo '<h2 style="text-align: center;">Only Agents can view property list.</h2>'; exit;
+}
+
+
 get_header();
+
 $options        =   wpestate_page_details($post->ID);
 $filtred        =   0;
 $compare_submit =   wpestate_get_template_link('compare_listings.php');
@@ -10,13 +21,6 @@ $compare_submit =   wpestate_get_template_link('compare_listings.php');
 // get curency , currency position and no of items per page
 global $order;
 global $custom_post_type;
-$current_user               =   wp_get_current_user();
-
-// Show property list to only agents.
-$user_role = get_user_meta( $current_user->ID, 'user_estate_role', true) ;
-if( $user_role !=2 ){
-	echo '<h2 style="text-align: center;">Only Agents can view property list.</h2>'; exit;
-}
 
 $currency                   =   esc_html( get_option('wp_estate_currency_symbol', '') );
 $where_currency             =   esc_html( get_option('wp_estate_where_currency_symbol', '') );
