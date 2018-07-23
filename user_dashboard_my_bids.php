@@ -7,6 +7,11 @@ if ( !is_user_logged_in() ) {
 
 get_header();
 
+// Delete bid
+if( isset($_POST) && $_POST['bid_id'] )
+	wp_delete_post( $_POST['bid_id'] );
+
+
 $current_user	= wp_get_current_user();
 $user_small_picture_id	=   get_the_author_meta( 'small_custom_picture' , $current_user->ID  );
 
@@ -45,39 +50,63 @@ if( $user_small_picture_id == '' ){
 		if ( $my_bids->have_posts() ) {
 			while ( $my_bids->have_posts() ) {
 				$my_bids->the_post();
-				$bid_id = $post->ID;
-				$prop_id = esc_html(get_post_meta( $post->ID, 'wpcf-prop-id', true));
-				$prop_image = get_the_post_thumbnail_url( $prop_id, 'blog_thumb' );
-				$prop_add = esc_html(get_post_meta( $prop_id, 'property_address', true));
-				$prop_price = esc_html(get_post_meta( $prop_id, 'property_price', true));
-				$bid_sell_com = esc_html(get_post_meta( $post->ID, 'wpcf-sell-com', true));
-				$bid_buy_com = esc_html(get_post_meta( $post->ID, 'wpcf-buy-com', true));
-				$bid_both_com = esc_html(get_post_meta( $post->ID, 'wpcf-both-com', true));
 				
+				$bid_id			= $post->ID;
+				$prop_id		= esc_html(get_post_meta( $post->ID, 'wpcf-prop-id', true));
+				$prop_image		= get_the_post_thumbnail_url( $prop_id, 'blog_thumb' );
+				$prop_add		= esc_html(get_post_meta( $prop_id, 'property_address', true));
+				$prop_price		= esc_html(get_post_meta( $prop_id, 'property_price', true));
+				$bid_sell_com	= esc_html(get_post_meta( $post->ID, 'wpcf-sell-com', true));
+				$bid_buy_com	= esc_html(get_post_meta( $post->ID, 'wpcf-buy-com', true));
+				$bid_both_com	= esc_html(get_post_meta( $post->ID, 'wpcf-both-com', true));
+				$bid_pitch		= esc_html(get_post_meta( $post->ID, 'wpcf-message', true));
+				$prop_author_id	= get_post_field ('post_author', $prop_id);
+				$prop_author_name	= get_the_author_meta( 'display_name' , $prop_author_id ); 
 				?>
 					<div class="row bid-list">
 						<div class="col-md-4 bid-attr">
 							<img src="<?php echo $prop_image;?>">
 						</div>
-						<div class="col-md-3 bid-attr">
-							<div class="bid-head">Address</div>
-							<?php echo $prop_add;?>
-						</div>
-						<div class="col-md-2 bid-attr">
-							<div class="bid-head">Asking</div>
-							$<?php echo $prop_price;?>
-						</div>
-						<div class="col-md-1 bid-attr">
-							<div class="bid-head">Me</div>
-							<?php echo $bid_sell_com;?>%
-						</div>
-						<div class="col-md-1 bid-attr">
-							<div class="bid-head">Buyers</div>
-							<?php echo $bid_buy_com;?>%
-						</div>
-						<div class="col-md-1 bid-attr">
-							<div class="bid-head">Dual Rep</div>
-							<?php echo $bid_both_com;?>%
+						
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-4 bid-attr">
+									<div class="bid-head">Address</div>
+									<?php echo $prop_add;?>
+								</div>
+								<div class="col-md-2 bid-attr">
+									<div class="bid-head">Asking</div>
+									$<?php echo $prop_price;?>
+								</div>
+								<div class="col-md-2 bid-attr">
+									<div class="bid-head">Me</div>
+									<?php echo $bid_sell_com;?>%
+								</div>
+								<div class="col-md-2 bid-attr">
+									<div class="bid-head">Buyers</div>
+									<?php echo $bid_buy_com;?>%
+								</div>
+								<div class="col-md-2 bid-attr">
+									<div class="bid-head">Dual Rep</div>
+									<?php echo $bid_both_com;?>%
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 bid-attr">
+									<div class="bid-head">Seller's Name</div>
+									<?php echo $prop_author_name;?>
+								</div>
+								<div class="col-md-6 bid-attr">
+									<div class="bid-head">Pitch</div>
+									<?php echo $bid_pitch;?>
+								</div>
+								<div class="col-md-2 bid-attr">
+									<form id="cancel_bid" method="post">
+										<input type="hidden" name="bid_id" value="<?php echo $bid_id; ?>">
+										<input type="submit" value="Cancel">
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 				

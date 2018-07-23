@@ -223,6 +223,8 @@ input#property_id {
 	text-align: center;
 }
 
-.bid-list .col-md-1 {
-    padding-right: 0px;
+#cancel_bid input {
+    background-color: #FF9800;
+    color: #fff;
+    padding: 10px 15px;
 }
