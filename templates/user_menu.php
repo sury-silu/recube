@@ -62,7 +62,7 @@ $user_role = get_user_meta( $current_user->ID, 'user_estate_role', true) ;
 
 <?php
 if ( $user_agent_id!=0 && get_post_status($user_agent_id)=='pending'  ){
-    echo '<div class="user_dashboard_app">'.__('Your account is pending approval. Please wait for admin to approve it. ','wpestate').'</div>';
+    echo '<div class="user_dashboard_app">'.__('Your account is pending approval. Please allow 1-2 business days to verify your account after completing your profile. We will reach out if we have any questions. ','wpestate').'</div>';
 }
 if ( $user_agent_id!=0 && get_post_status($user_agent_id)=='disabled' ){
     echo '<div class="user_dashboard_app">'.__('Your account is disabled.','wpestate').'</div>';
