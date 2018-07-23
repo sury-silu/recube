@@ -228,3 +228,13 @@ input#property_id {
     color: #fff;
     padding: 10px 15px;
 }
+
+/* My Properties*/
+
+#prop_delete {
+    background-color: #FF9800;
+    color: #fff;
+    margin-left: 27px;
+    float: left;
+    padding: 10px 15px;
+}
