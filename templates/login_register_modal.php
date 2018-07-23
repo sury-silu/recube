@@ -90,6 +90,9 @@ $security_nonce=wp_nonce_field( 'forgot_ajax_nonce-topbar', 'security-forgot-top
 								
 								if( $name == 'Developer' )
 									$name = 'Seller';
+								
+								if( $name == 'Single Agent' )
+									$name = 'Agent';
                                 print '<option value="'.$key.'">'.$name.'</option>';
                             }
                         }
