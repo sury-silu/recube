@@ -323,17 +323,20 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 				<div id="bid_wrapper">
 					<div class="row" id="bid_header">
 						<div class="col-md-12">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								Agent's Name
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								Listing Agent's Commission
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								Buyer's Agent's Commission
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								If agent also represent buyer
+							</div>
+							<div class="col-md-4">
+								Agent's pitch
 							</div>
 						</div>
 					</div>
@@ -343,32 +346,39 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 						$agent = get_user_by( 'id', $bid->post_author );
 					?>
 						<div class="row bid-row">
-							<div class="col-md-3 bid-header-phone">
+							<div class="col-md-2 bid-header-phone">
 								<span>Agent's Name</span>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<?php echo $agent->first_name . ' ' . $agent->last_name; ?>
 							</div>
 							
-							<div class="col-md-3 bid-header-phone">
+							<div class="col-md-2 bid-header-phone">
 								<span>Listing Agent's Commission</span>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<?php echo get_post_meta( $bid->ID, 'wpcf-sell-com', true ); ?>%
 							</div>
 							
-							<div class="col-md-3 bid-header-phone">
+							<div class="col-md-2 bid-header-phone">
 								<span>Buyer's Agent's Commission</span>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<?php echo get_post_meta( $bid->ID, 'wpcf-buy-com', true ); ?>%
 							</div>
 							
-							<div class="col-md-3 bid-header-phone">
+							<div class="col-md-2 bid-header-phone">
 								<span>If agent also represents buyer</span>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<?php echo get_post_meta( $bid->ID, 'wpcf-both-com', true ); ?>%
+							</div>
+							
+							<div class="col-md-4 bid-header-phone">
+								<span>Agent's pitch</span>
+							</div>
+							<div class="col-md-4">
+								<?php echo get_post_meta( $bid->ID, 'wpcf-message', true ); ?>
 							</div>
 						</div>
 					<?php

@@ -169,12 +169,12 @@ input#property_id {
     padding: 10px 0px;
 }
 	
-.col-md-3.bid-header-phone {
+.col-md-2.bid-header-phone, .col-md-4.bid-header-phone {
     padding: 5px 0px;
 	display : none;
 }	
 
-.col-md-3.bid-header-phone span{
+.col-md-2.bid-header-phone span, .col-md-4.bid-header-phone span{
 	background-color: #FF9800;
     color: #fff;
 	padding: 5px 10px;
@@ -182,7 +182,7 @@ input#property_id {
 }
 
 @media only screen and (max-width: 600px) {
-	.col-md-3.bid-header-phone {
+	.col-md-2.bid-header-phone, .col-md-4.bid-header-phone {
 		display: block;
 	}
 	#bid_header {
