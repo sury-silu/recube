@@ -3,15 +3,15 @@
 // Wp Estate Pack 
 
 
+get_header();
+
+
 // Show property list to only agents.
 $current_user               =   wp_get_current_user();
 $user_role = get_user_meta( $current_user->ID, 'user_estate_role', true) ;
 if( $user_role !=2 ){
-	echo '<h2 style="text-align: center;">Only Agents can view property list.</h2>'; exit;
+	echo '<h2 style="text-align: center; margin-top:120px;">Only verified  Agents can view property list.</h2>'; get_footer(); exit;
 }
-
-
-get_header();
 
 $options        =   wpestate_page_details($post->ID);
 $filtred        =   0;
