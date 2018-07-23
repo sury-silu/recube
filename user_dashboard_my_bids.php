@@ -65,7 +65,7 @@ if( $user_small_picture_id == '' ){
 				?>
 					<div class="row bid-list">
 						<div class="col-md-4 bid-attr">
-							<img src="<?php echo $prop_image;?>">
+							<a href="<?php echo get_permalink($prop_id); ?>"><img src="<?php echo $prop_image;?>"></a>
 						</div>
 						
 						<div class="col-md-8">
