@@ -13,13 +13,15 @@ if( is_user_logged_in() ) {
 	if( $user_role !=2 ){
 		echo '<h2 style="text-align: center; margin-top:120px;">Only verified  Agents can view property list.</h2>';
 		echo '<style>#search_wrapper, .header_media.with_search_10{display:none;}</style>';
+		get_footer(); exit;
 	}
 }
 else {
 	echo '<h2 style="text-align: center; margin-top:120px;">Please login or register as an agent using the "Account" button on top right.</h2>';
 	echo '<style>#search_wrapper, .header_media.with_search_10{display:none;}</style>';
+	get_footer(); exit;
 }
-get_footer(); exit;
+
 
 $options        =   wpestate_page_details($post->ID);
 $filtred        =   0;
