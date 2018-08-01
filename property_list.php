@@ -6,12 +6,20 @@
 get_header();
 
 
-// Show property list to only agents.
-$current_user               =   wp_get_current_user();
-$user_role = get_user_meta( $current_user->ID, 'user_estate_role', true) ;
-if( $user_role !=2 ){
-	echo '<h2 style="text-align: center; margin-top:120px;">Only verified  Agents can view property list.</h2>'; get_footer(); exit;
+if( is_user_logged_in() ) {
+	// Show property list to only agents.
+	$current_user               =   wp_get_current_user();
+	$user_role = get_user_meta( $current_user->ID, 'user_estate_role', true) ;
+	if( $user_role !=2 ){
+		echo '<h2 style="text-align: center; margin-top:120px;">Only verified  Agents can view property list.</h2>';
+		echo '<style>#search_wrapper, .header_media.with_search_10{display:none;}</style>';
+	}
 }
+else {
+	echo '<h2 style="text-align: center; margin-top:120px;">Please login or register as an agent using the "Account" button on top right.</h2>';
+	echo '<style>#search_wrapper, .header_media.with_search_10{display:none;}</style>';
+}
+get_footer(); exit;
 
 $options        =   wpestate_page_details($post->ID);
 $filtred        =   0;
