@@ -307,21 +307,34 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 			// Show bidding form only to agents.
 			if( $user_estate_role == "2" ) {
 				
-				// Check if the cureent user has already bidded on this property.
-				$bids = get_posts( array(
-						'post_type'		=> 'bid',
-						'meta_key'		=> 'wpcf-prop-id',
-						'meta_value'	=> $post->ID,
-						'author'		=> $current_user->ID
+				// Check if the agent is verified.
+				$agent_obj = get_posts( array(
+						'post_type'			=> 'estate_agent',
+						'meta_key'		=> 'user_meda_id',
+						'meta_value'	=> $current_user->ID,	
 				));
 				
-				// Don't allow multiple bidding.
-				if( $bids ) {
-					echo "you have already placed a bid on this property.";
+				if( $agent_obj ) {
+				
+					// Check if the cureent user has already bidded on this property.
+					$bids = get_posts( array(
+							'post_type'		=> 'bid',
+							'meta_key'		=> 'wpcf-prop-id',
+							'meta_value'	=> $post->ID,
+							'author'		=> $current_user->ID
+					));
+					
+					// Don't allow multiple bidding.
+					if( $bids ) {
+						echo "you have already placed a bid on this property.";
+					}
+					else {
+						echo '<input id="property_id" type="text" value="' . $post->ID .'">';
+						echo do_shortcode( '[cred_form form="form-for-bids"]' );
+					}
 				}
 				else {
-					echo '<input id="property_id" type="text" value="' . $post->ID .'">';
-					echo do_shortcode( '[cred_form form="form-for-bids"]' );
+					echo "please wait until your agent profile is verified";
 				}
 			}
 			// Show all bids received only to sellers/developer.
@@ -330,7 +343,8 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 				$bids = get_posts( array(
 						'post_type'		=> 'bid',
 						'meta_key'		=> 'wpcf-prop-id',
-						'meta_value'	=> $post->ID
+						'meta_value'	=> $post->ID,
+						'posts_per_page' => -1,
 				));
 				?>
 				
@@ -421,12 +435,7 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
             get_template_part ('/templates/property_reviews');
         }
         
-      
-         
-      
-        get_template_part ('/templates/similar_listings');
-     
-    
+        //get_template_part ('/templates/similar_listings');
 
         ?>
         </div><!-- end single content -->
