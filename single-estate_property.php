@@ -306,8 +306,23 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 			
 			// Show bidding form only to agents.
 			if( $user_estate_role == "2" ) {
-				echo '<input id="property_id" type="text" value="' . $post->ID .'">';
-				echo do_shortcode( '[cred_form form="form-for-bids"]' );
+				
+				// Check if the cureent user has already bidded on this property.
+				$bids = get_posts( array(
+						'post_type'		=> 'bid',
+						'meta_key'		=> 'wpcf-prop-id',
+						'meta_value'	=> $post->ID,
+						'author'		=> $current_user->ID
+				));
+				
+				// Don't allow multiple bidding.
+				if( $bids ) {
+					echo "you have already placed a bid on this property.";
+				}
+				else {
+					echo '<input id="property_id" type="text" value="' . $post->ID .'">';
+					echo do_shortcode( '[cred_form form="form-for-bids"]' );
+				}
 			}
 			// Show all bids received only to sellers/developer.
 			else if( $user_estate_role == "4" ) {
@@ -431,8 +446,5 @@ $mapargs = array(
 $selected_pins  =   wpestate_listing_pins($mapargs,1);
 wp_localize_script('googlecode_property', 'googlecode_property_vars2', 
             array('markers2'          =>  $selected_pins));
-
-			
-			
 
 get_footer(); ?>
