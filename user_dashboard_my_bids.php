@@ -101,7 +101,7 @@ if( $user_small_picture_id == '' ){
 									<?php echo $bid_pitch;?>
 								</div>
 								<div class="col-md-2 bid-attr">
-									<form id="cancel_bid" method="post">
+									<form id="cancel_bid" method="post" onsubmit="return confirm('Are you sure you want to withdraw your bid from this property?');">
 										<input type="hidden" name="bid_id" value="<?php echo $bid_id; ?>">
 										<input type="submit" value="Cancel">
 									</form>
