@@ -326,7 +326,12 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 					
 					// Don't allow multiple bidding.
 					if( $bids ) {
-						echo "you have already placed a bid on this property.";
+						
+						// Show success message if the bid is just done.
+						if( isset( $_GET['_success_message'] ) )
+							echo "Your bid is submitted successflly";
+						else
+							echo "you have already placed a bid on this property.";
 					}
 					else {
 						echo '<input id="property_id" type="text" value="' . $post->ID .'">';
