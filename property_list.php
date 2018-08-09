@@ -15,6 +15,20 @@ if( is_user_logged_in() ) {
 		echo '<style>#search_wrapper, .header_media.with_search_10{display:none;}</style>';
 		get_footer(); exit;
 	}
+	else {
+		// Check if the agent is verified.
+		$agent_obj = get_posts( array(
+				'post_type'			=> 'estate_agent',
+				'meta_key'		=> 'user_meda_id',
+				'meta_value'	=> $current_user->ID,	
+		));
+		
+		if( !$agent_obj ) {
+			echo '<h2 style="text-align: center; margin-top:120px;">Your profile is being reviewed, please wait until it is verified.</h2>';
+			echo '<style>#search_wrapper, .header_media.with_search_10{display:none;}</style>';
+			get_footer(); exit;
+		}
+	}
 }
 else {
 	echo '<h2 style="text-align: center; margin-top:120px;">Please login or register as an agent using the "Account" button on top right.</h2>';
