@@ -60,8 +60,9 @@ if( $user_small_picture_id == '' ){
 				$bid_buy_com	= esc_html(get_post_meta( $post->ID, 'wpcf-buy-com', true));
 				$bid_both_com	= esc_html(get_post_meta( $post->ID, 'wpcf-both-com', true));
 				$bid_pitch		= esc_html(get_post_meta( $post->ID, 'wpcf-message', true));
-				$prop_author_id	= get_post_field ('post_author', $prop_id);
-				$prop_author_name	= get_the_author_meta( 'display_name' , $prop_author_id ); 
+				$seller_id		= get_post_field ('post_author', $prop_id);
+				$seller_name	= get_the_author_meta( 'display_name' , $seller_id );
+				$seller_profile_id = intval  ( get_post_meta( $prop_id , 'property_agent', true) );
 				?>
 					<div class="row bid-list">
 						<div class="col-md-4 bid-attr">
@@ -94,7 +95,10 @@ if( $user_small_picture_id == '' ){
 							<div class="row">
 								<div class="col-md-4 bid-attr">
 									<div class="bid-head">Seller's Name</div>
-									<?php echo $prop_author_name;?>
+									<?php
+									if( $seller_profile_id )
+										echo '<a href="'.get_permalink($seller_profile_id).'">'. $seller_name .'</a>'; 
+									else echo $seller_name; ?>
 								</div>
 								<div class="col-md-6 bid-attr">
 									<div class="bid-head">Pitch</div>
