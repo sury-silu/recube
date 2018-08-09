@@ -378,13 +378,23 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 					<?php
 					foreach( $bids as $bid ){
 						$agent = get_user_by( 'id', $bid->post_author );
+						
+						// Get profile link of the agent who bided.
+						$agent_profile = get_posts( array(
+								'post_type'		=> 'estate_agent',
+								'meta_key'		=> 'user_meda_id',
+								'meta_value'	=> $bid->post_author,
+						));
+						$agent_permalink = get_permalink( $agent_profile[0]->ID );
+						
+						
 					?>
 						<div class="row bid-row">
 							<div class="col-md-2 bid-header-phone">
 								<span>Agent's Name</span>
 							</div>
 							<div class="col-md-2">
-								<?php echo $agent->first_name . ' ' . $agent->last_name; ?>
+								<?php echo '<a href="' . $agent_permalink . '">' . $agent->user_nicename . '</a>'; ?>
 							</div>
 							
 							<div class="col-md-2 bid-header-phone">
