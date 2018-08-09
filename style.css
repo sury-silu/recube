@@ -116,6 +116,10 @@ padding-right: 12px;
 
 /* ===== User dasboard ======= */
 
+.listing_actions .share_list, .listing_actions .compare-action {
+	display: none;
+}
+
 /* My Profile page fields */
 #agent_member_field, #agent_mobile_field, #agent_custom_data_fields, #agent_category_fields {
 	display: none;
