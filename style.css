@@ -242,3 +242,9 @@ input#property_id {
     float: left;
     padding: 10px 15px;
 }
+
+/* single developer/seller */
+
+.single-estate_developer .header_agency_container {
+	display: none;
+}
