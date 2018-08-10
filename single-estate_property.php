@@ -39,7 +39,6 @@ $unit                       =   esc_html( get_option('wp_estate_measure_sys', ''
 $currency                   =   esc_html( get_option('wp_estate_currency_symbol', '') );
 $use_floor_plans            =   intval( get_post_meta($post->ID, 'use_floor_plans', true) );      
 
-
 if (function_exists('icl_translate') ){
     $where_currency             =   icl_translate('wpestate','wp_estate_where_currency_symbol', esc_html( get_option('wp_estate_where_currency_symbol', '') ) );
     $property_description_text  =   icl_translate('wpestate','wp_estate_property_description_text', esc_html( get_option('wp_estate_property_description_text') ) );
@@ -280,13 +279,10 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
         get_template_part ('/templates/property_page_acc_content'); 
     }
 
+	// Get the email of the property owner.
+	$prop_auth_email = get_the_author_meta( 'user_email' );
     ?>    
         
-            
-            
-            
-       
-    
         <?php 
         wp_reset_query();
         ?>  
@@ -335,6 +331,7 @@ if($wp_estate_global_page_template!=0 || $wp_estate_local_page_template!=0 ){
 					}
 					else {
 						echo '<input id="property_id" type="text" value="' . $post->ID .'">';
+						echo '<input id="seller-email" type="hiden" value="' . $prop_auth_email .'">';
 						echo do_shortcode( '[cred_form form="form-for-bids"]' );
 					}
 				}
