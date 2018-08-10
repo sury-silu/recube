@@ -8,9 +8,16 @@ if ( !is_user_logged_in() ) {
 get_header();
 
 // Delete bid
-if( isset($_POST) && $_POST['bid_id'] )
+if( isset($_POST) && $_POST['bid_id'] ) {
+	
+	$prop_id		= esc_html(get_post_meta( $_POST['bid_id'], 'wpcf-prop-id', true));
+	$seller_id		= get_post_field ('post_author', $prop_id);
+	$seller_email	= get_the_author_meta( 'user_email' , $seller_id );
+	
+	wp_mail( $seller_email, 'A bid deleted' , 'A bid on you you property is deleted' );
+	
 	wp_delete_post( $_POST['bid_id'] );
-
+}
 
 $current_user	= wp_get_current_user();
 $user_small_picture_id	=   get_the_author_meta( 'small_custom_picture' , $current_user->ID  );
