@@ -25,6 +25,10 @@ function email_bidders( $id ){
 	if( get_post_type( $id ) != 'estate_property' )
 		return;
 	
+	$seller_id		= get_post_field ('post_author', $id);
+	$seller_name	= get_the_author_meta( 'user_nicename' , $seller_id );
+	$prop_name		= get_the_title( $id );
+	$mail_body		= 'Seller ' . $seller_name . ' has ended their listing for ' . $prop_name . '.Please check back for more listings to bid on.';
 	
 	// Get all the bids of the current property.
 	$bids = get_posts( array(
@@ -39,6 +43,6 @@ function email_bidders( $id ){
 		$agent = get_user_by( 'id', $bid->post_author );
 		
 		// Mail to agent.
-		wp_mail( $agent->user_email, 'Property Removed' , 'A property on which you had bidded is removed.' );
+		wp_mail( $agent->user_email, 'Property Removed' , $mail_body );
 	}
 }

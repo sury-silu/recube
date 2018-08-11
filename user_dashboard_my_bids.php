@@ -13,8 +13,14 @@ if( isset($_POST) && $_POST['bid_id'] ) {
 	$prop_id		= esc_html(get_post_meta( $_POST['bid_id'], 'wpcf-prop-id', true));
 	$seller_id		= get_post_field ('post_author', $prop_id);
 	$seller_email	= get_the_author_meta( 'user_email' , $seller_id );
+	$agent_id		= get_post_field ('post_author', $_POST['bid_id']);
+	$agent_name		= get_the_author_meta( 'user_nicename' , $agent_id );
+	$prop_name		= get_the_title( $prop_id );
+	$prop_link		= get_permalink( $prop_id );
 	
-	wp_mail( $seller_email, 'A bid deleted' , 'A bid on you you property is deleted' );
+	$mail_body		= 'Agent ' . $agent_name . ' has withdrawn their bid from your listing <a href="' . $prop_link . '">' . $prop_name . '</a>';
+	
+	wp_mail( $seller_email, 'A bid deleted' , $mail_body );
 	
 	wp_delete_post( $_POST['bid_id'] );
 }
